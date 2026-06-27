@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
+// import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -25,18 +25,18 @@ class _UtilsScreenState extends State<UtilsScreen> {
 
   // file picker
 
-  Future<void> pickFile() async {
-    FilePickerResult? filePickerResult = await FilePicker.pickFiles(
-      allowMultiple: true,
-      allowedExtensions: ['pdf'],
-    );
-    if (filePickerResult != null) {
-      setState(() {
-        fileName = filePickerResult.files.single.name;
-        filePath = filePickerResult.files.single.path;
-      });
-    }
-  }
+  // Future<void> pickFile() async {
+  //   FilePickerResult? filePickerResult = await FilePicker.pickFiles(
+  //     allowMultiple: true,
+  //     allowedExtensions: ['pdf'],
+  //   );
+  //   if (filePickerResult != null) {
+  //     setState(() {
+  //       fileName = filePickerResult.files.single.name;
+  //       filePath = filePickerResult.files.single.path;
+  //     });
+  //   }
+  // }
 
   Future<void> pickImageFromCam() async {
     final XFile? pickedImage = await _picker.pickImage(
