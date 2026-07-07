@@ -1,5 +1,4 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class GoogleLoginScreen extends StatefulWidget {
@@ -10,6 +9,13 @@ class GoogleLoginScreen extends StatefulWidget {
 }
 
 class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
+  @override
+  void initState() {
+    getFCMToken();
+    super.initState();
+  }
+
+  // firebase auth then google sign in
   String token = 'lodaing ...';
 
   // @override
@@ -28,13 +34,15 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
         children: [
           ElevatedButton(
             onPressed: () {
-              getFCMToken();
+              // google sign in
             },
             child: Text('Generate FCM Token'),
           ),
+          Text('User name:'),
+          Text('Email:'),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text('FCM Token is : "$token"'),
+            // child: Text('FCM Token is : "$token"'),
           ),
         ],
       ),
@@ -54,16 +62,16 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
     });
 
     print('Fcm Token is : "$token"');
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      if (kDebugMode) {
-        print('Foreground: ${message.notification?.title}');
-      }
-    });
+    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    //   if (kDebugMode) {
+    //     print('Foreground: ${message.notification?.title}');
+    //   }
+    // });
 
-    RemoteMessage? initialMessage = await FirebaseMessaging.instance
-        .getInitialMessage();
-    if (initialMessage != null) {
-      print('From Terminated Stste');
-    }
+    // RemoteMessage? initialMessage = await FirebaseMessaging.instance
+    //     .getInitialMessage();
+    // if (initialMessage != null) {
+    //   print('From Terminated Stste');
+    // }
   }
 }

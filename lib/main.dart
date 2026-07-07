@@ -20,6 +20,15 @@ void main() async {
 
   // step 2 register and initilized
   FirebaseMessaging.onBackgroundMessage(_backgroundHandler);
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    if (message.notification != null) {
+      showNotification(
+        title: message.notification!.title ?? '',
+        body: message.notification!.body ?? '',
+      );
+    }
+    // print('Foreground: ${message.notification?.title}');
+  });
 
   await initLocalNotification();
 

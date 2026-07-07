@@ -26,3 +26,24 @@ Future<void> initLocalNotification() async {
       >()
       ?.requestNotificationsPermission();
 }
+
+Future<void> showNotification({
+  required String title,
+  required String body,
+}) async {
+  const android = AndroidNotificationDetails(
+    'local_notification',
+    'Local Notification',
+    channelDescription: 'This is a Local Notification',
+    importance: Importance.max,
+    priority: Priority.max,
+  );
+  // step 2
+  const details = NotificationDetails(android: android);
+  await localNotificationsPlugin.show(
+    id: 0,
+    title: title,
+    body: body,
+    notificationDetails: details,
+  );
+}

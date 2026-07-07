@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:todo_app/helper/local_notification_service.dart';
 
 class LocalFlutterNotificationScreen extends StatefulWidget {
@@ -20,7 +19,10 @@ class _LocalFlutterNotificationScreenState
         children: [
           ElevatedButton(
             onPressed: () {
-              showNotification();
+              showNotification(
+                title: 'This is From local notification ',
+                body: 'body',
+              );
             },
             child: Text('Notification'),
           ),
@@ -31,21 +33,21 @@ class _LocalFlutterNotificationScreenState
 
   // for notifiation
 
-  Future<void> showNotification() async {
-    const android = AndroidNotificationDetails(
-      'local_notification',
-      'Local Notification',
-      channelDescription: 'This is a Local Notification',
-      importance: Importance.max,
-      priority: Priority.max,
-    );
-    // step 2
-    const details = NotificationDetails(android: android);
-    await localNotificationsPlugin.show(
-      id: 1,
-      title: 'Hello, this is my first notifiation title',
-      body: 'this is body description',
-      notificationDetails: details,
-    );
-  }
+  // Future<void> showNotification() async {
+  //   const android = AndroidNotificationDetails(
+  //     'local_notification',
+  //     'Local Notification',
+  //     channelDescription: 'This is a Local Notification',
+  //     importance: Importance.max,
+  //     priority: Priority.max,
+  //   );
+  //   // step 2
+  //   const details = NotificationDetails(android: android);
+  //   await localNotificationsPlugin.show(
+  //     id: 1,
+  //     title: 'Hello, this is my first notifiation title',
+  //     body: 'this is body description',
+  //     notificationDetails: details,
+  //   );
+  // }
 }
