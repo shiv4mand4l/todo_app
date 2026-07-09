@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:printing/printing.dart';
 
 class GoogleLoginScreen extends StatefulWidget {
   const GoogleLoginScreen({super.key});
@@ -42,16 +42,16 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
       final GoogleSignInAccount googleUser = await GoogleSignIn.instance
           .authenticate();
 
-      // ignore: dead_code
+      // ignore: unnecessary_null_comparison, dead_code
       if (googleUser == null) {
         // cancel by user
       }
 
       // step 2
-      final googleAuth = googleUser?.authentication;
+      final googleAuth = googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
-        idToken: googleAuth!.idToken,
+        idToken: googleAuth.idToken,
       );
       await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
@@ -94,10 +94,18 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
           Text('User name: ${_user?.displayName ?? 'n/a'}'),
           Text('Email: ${_user?.email ?? 'n/a'} '),
           Text('Email: ${_user?.emailVerified ?? 'n/a'} '),
+
           // Text(_user?.phoneNumber ?? 'n/a'),
-          CircleAvatar(
-            radius: 50,
-            backgroundImage: NetworkImage(_user?.photoURL ?? 'Nothimg'),
+          // CircleAvatar(
+          //   radius: 50,
+          //   backgroundImage: NetworkImage(_user?.photoURL ?? 'Nothimg'),
+          // ),
+          ElevatedButton(
+            onPressed: () {
+              // only for testing
+              FirebaseCrashlytics.instance.crash();
+            },
+            child: Text('App Crash'),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
