@@ -28,7 +28,7 @@ class _FlutterInappWebviewScreenState extends State<FlutterInappWebviewScreen> {
             ),
           Expanded(
             child: InAppWebView(
-              initialUrlRequest: URLRequest(url: WebUri("https://pub.dev/")),
+              initialUrlRequest: URLRequest(url: WebUri("https://google.com/")),
               onProgressChanged: (controller, currentProgress) {
                 setState(() {
                   // FIX 2: Divides the new 'currentProgress' variable, not the old state
